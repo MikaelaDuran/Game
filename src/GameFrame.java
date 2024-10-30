@@ -10,7 +10,7 @@ public class GameFrame extends JFrame {
 
     public GameFrame(String playerName) {
         setTitle("Number Puzzle");
-        ImageIcon puzzle = new ImageIcon("");
+        ImageIcon puzzle = new ImageIcon("src/resources/puzzle.png");
         setIconImage(puzzle.getImage());
         setSize(400, 400);
         setResizable(false);
@@ -39,7 +39,7 @@ public class GameFrame extends JFrame {
         restartButton.addActionListener(e -> puzzleGame.resetGame());
 
         exitButton.addActionListener(e -> {
-            ImageIcon exit = new ImageIcon(new ImageIcon("").
+            ImageIcon exit = new ImageIcon(new ImageIcon("src/resources/exit.png").
                     getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
 
             String[] respons = {"Hell yeah!", "No, absolutely not"};
