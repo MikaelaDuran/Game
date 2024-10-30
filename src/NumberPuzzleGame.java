@@ -128,6 +128,40 @@ public class NumberPuzzleGame extends JPanel {
         }
         return buttons[15].getText().isEmpty(); // Sista knappen ska vara tom
     }
+    // Startar timern som räknar upp tiden för varje sekund
+    private void startTimer() {
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                elapsedTime += 1000; // Öka den förflutna tiden med 1 sekund
+                int minutes = (elapsedTime / (1000 * 60)) % 60; // Beräkna minuter
+                int seconds = (elapsedTime / 1000) % 60;        // Beräkna sekunder
+
+                // Formatera tiden till mm:ss
+                String timeFormatted = String.format("%02d:%02d", minutes, seconds);
+                timerLabel.setText("Time: " + timeFormatted); // Uppdatera timerLabel
+            }
+        });
+        timer.start(); // Starta timern
+    }
+
+    // Aktiverar "fusk" genom att lösa pusslet för spelaren
+    public void cheat() {
+        // Återställ knapparna till ett sorterat tillstånd
+        for (int i = 0; i < 15; i++) {
+            buttons[i].setText(String.valueOf(i + 1));
+        }
+        buttons[15].setText(""); // Sista knappen ska vara tom
+        emptyIndex = 15; // Uppdatera tom index
+
+        ImageIcon cheat = new ImageIcon(new ImageIcon("src/resources/cheat.jpg").
+                getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+
+        String[] respons = {"OMG YES"};
+        JOptionPane.showOptionDialog(this,"Cheatmode activated!", "CHEATMODE"
+                ,JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, cheat, respons, 0);
+    }
+
 
 
     public static void main(String[] args) {
