@@ -1,4 +1,5 @@
 public class NumberPuzzleGame {
+    //main
 
     //main fönster
 
@@ -6,4 +7,9 @@ public class NumberPuzzleGame {
 
     }
 
+    public void cheat() {
+    }
+
+    public void resetGame() {
+    }
 }
