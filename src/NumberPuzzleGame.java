@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 // Logik för spelet och kontroll av vinsten och fuskläge
 public class NumberPuzzleGame extends JPanel {
@@ -30,6 +30,7 @@ public class NumberPuzzleGame extends JPanel {
         startGame();
         startTimer();
     }
+
     private void startGame() {
         // Skapar vi en lista med nummer för att slumpa rutorna
         List<Integer> numbers = new ArrayList<>();
@@ -59,7 +60,6 @@ public class NumberPuzzleGame extends JPanel {
     // Återställer spelet
     public void resetGame() {
 
-
         ImageIcon restart = new ImageIcon(new ImageIcon("src/resources/reset.png").
                 getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
         String[] respons = {"Yes, please", "Lemme think, no"};
@@ -76,18 +76,50 @@ public class NumberPuzzleGame extends JPanel {
             startGame();
             revalidate();
             repaint();
-            timerLabel.setText("Time: 0");
+            timerLabel.setText("Time: 00:00");
             moveCountLabel.setText("Moves: 0");
         }
     }
 
+    // Flyttar en knapp om den är bredvid den tomma knappen
+    private void moveButton(int index) {
+        if (canMove(index)) {
+            buttons[emptyIndex].setText(buttons[index].getText());
+            buttons[index].setText("");
+            emptyIndex = index;
+            moveCount++; // Öka dragräknaren
+            moveCountLabel.setText("Moves: " + moveCount); // Uppdatera dragantalet
+
+            if (isSolved()) { // Kontrollerar om spelet är löst
+                timer.stop();
+
+                ImageIcon happy = new ImageIcon(new ImageIcon("src/resources/smiley.png").
+                        getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+
+                String[] responses = {"Thank you!"};
+                JOptionPane.showOptionDialog(this,"Congratulations " + playerName + ", you won!",
+                        "Message to the legend winner"
+                        ,JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, happy, responses, 0);
+            }
+        }
+    }
+
+    // Kontrollerar om en knapp kan flyttas till en tom ruta
+    private boolean canMove(int index) {
+        if (index == emptyIndex)
+            return false;
+
+        int rowDiff = Math.abs(index / 4 - emptyIndex / 4); // index / 4 ger radpositionen för index
+        int colDiff = Math.abs(index % 4 - emptyIndex % 4); // index % 4 ger kolumnpositionen för index
+
+        // Här summeras rowDiff och colDiff. Om summan är 1 innebär det att knappen är precis intill den tomma rutan,
+        // antingen i samma rad eller kolumn (men inte diagonalt).
+        //Om rowDiff + colDiff == 1 returnerar metoden true, vilket betyder att knappen kan flyttas.
+        return (rowDiff + colDiff) == 1;
+    }
+
     public static void main(String[] args) {
 
-    }
 
-    public void cheat() {
-    }
-
-    public void resetGame() {
     }
 }
