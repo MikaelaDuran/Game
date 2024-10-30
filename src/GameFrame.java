@@ -4,6 +4,8 @@ import java.awt.*;
 // Fönstret för själva spelet
 public class GameFrame extends JFrame {
 
+    //Variabler
+
     private NumberPuzzleGame puzzleGame;
     private JLabel timerLabel;
     private JLabel moveCountLabel;
