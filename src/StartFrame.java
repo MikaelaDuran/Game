@@ -11,7 +11,7 @@ public class StartFrame extends JFrame {
 
     public StartFrame() {
         setTitle("Number Puzzle");
-        ImageIcon puzzle = new ImageIcon("\"src/resources/puzzle.png\"");
+        ImageIcon puzzle = new ImageIcon("src/resources/puzzle.png");
         setIconImage(puzzle.getImage());
         setSize(300, 150);
         setResizable(false);

@@ -112,9 +112,6 @@ public class NumberPuzzleGame extends JPanel {
         int rowDiff = Math.abs(index / 4 - emptyIndex / 4); // index / 4 ger radpositionen för index
         int colDiff = Math.abs(index % 4 - emptyIndex % 4); // index % 4 ger kolumnpositionen för index
 
-        // Här summeras rowDiff och colDiff. Om summan är 1 innebär det att knappen är precis intill den tomma rutan,
-        // antingen i samma rad eller kolumn (men inte diagonalt).
-        //Om rowDiff + colDiff == 1 returnerar metoden true, vilket betyder att knappen kan flyttas.
         return (rowDiff + colDiff) == 1;
     }
 
@@ -161,8 +158,6 @@ public class NumberPuzzleGame extends JPanel {
         JOptionPane.showOptionDialog(this,"Cheatmode activated!", "CHEATMODE"
                 ,JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, cheat, respons, 0);
     }
-
-
 
     public static void main(String[] args) {
 
