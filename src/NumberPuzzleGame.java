@@ -4,4 +4,9 @@ public class NumberPuzzleGame {
 
     }
 
+    public void cheat() {
+    }
+
+    public void resetGame() {
+    }
 }
