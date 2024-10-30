@@ -118,7 +118,17 @@ public class NumberPuzzleGame extends JPanel {
         return (rowDiff + colDiff) == 1;
     }
 
-    //main fönster
+    // Kontrollerar om spelet är löst
+    private boolean isSolved() {
+        // Kontrollera om knapparna är i rätt ordning
+        for (int i = 0; i < 15; i++) {
+            if (!buttons[i].getText().equals(String.valueOf(i + 1))) {
+                return false;
+            }
+        }
+        return buttons[15].getText().isEmpty(); // Sista knappen ska vara tom
+    }
+
 
     public static void main(String[] args) {
 
