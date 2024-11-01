@@ -9,6 +9,7 @@ import java.util.ArrayList;
 // Logik för spelet och kontroll av vinsten och fuskläge
 public class NumberPuzzleGame extends JPanel {
 
+    // Variabler
     private Button[] buttons;
     private int emptyIndex;
     private String playerName;
@@ -18,7 +19,7 @@ public class NumberPuzzleGame extends JPanel {
     private JLabel timerLabel;
     private JLabel moveCountLabel;
 
-
+    // Konstruktor som initierar spelet
     public NumberPuzzleGame(String playerName, JLabel timerLabel, JLabel moveCountLabel) {
         this.playerName = playerName;
         this.timerLabel = timerLabel;
@@ -31,14 +32,15 @@ public class NumberPuzzleGame extends JPanel {
         startTimer();
     }
 
+    // Metod för att starta spelet
     private void startGame() {
-        // Skapar vi en lista med nummer för att slumpa rutorna
+        // Skapar en lista med nummer för att slumpa rutorna
         List<Integer> numbers = new ArrayList<>();
         for (int i = 1; i < 16; i++) numbers.add(i); // 1 - 15
         numbers.add(0); // Lägg till tom ruta
         Collections.shuffle(numbers); // Slumpa ordningen
 
-        // Skapar vi knappar och lägger till dom i panelen
+        // Skapar knappar och lägger till dom i panelen
         for (int i = 0; i < buttons.length; i++) {
             if (numbers.get(i) == 0) {
                 buttons[i] = new Button(""); // Tom knapp
@@ -57,7 +59,7 @@ public class NumberPuzzleGame extends JPanel {
         }
     }
 
-    // Återställer spelet
+    // Metod för att återställa spelet
     public void resetGame() {
 
         ImageIcon restart = new ImageIcon(new ImageIcon("src/resources/reset.png").
@@ -81,7 +83,7 @@ public class NumberPuzzleGame extends JPanel {
         }
     }
 
-    // Flyttar en knapp om den är bredvid den tomma knappen
+    // Metod för att flytta en knapp om den är bredvid den tomma knappen
     private void moveButton(int index) {
         if (canMove(index)) {
             buttons[emptyIndex].setText(buttons[index].getText());
@@ -104,20 +106,20 @@ public class NumberPuzzleGame extends JPanel {
         }
     }
 
-    // Kontrollerar om en knapp kan flyttas till en tom ruta
+    // Metod som kontrollerar om en knapp kan flyttas till en tom ruta
     private boolean canMove(int index) {
         if (index == emptyIndex)
             return false;
 
-        int rowDiff = Math.abs(index / 4 - emptyIndex / 4); // index / 4 ger radpositionen för index
-        int colDiff = Math.abs(index % 4 - emptyIndex % 4); // index % 4 ger kolumnpositionen för index
+        // Beräkna skillnad i rad och kolumn mellan aktuell knapp och den tomma rutan
+        int rowDiff = Math.abs(index / 4 - emptyIndex / 4);
+        int colDiff = Math.abs(index % 4 - emptyIndex % 4);
 
-        return (rowDiff + colDiff) == 1;
+        return (rowDiff + colDiff) == 1; // Knappen kan flyttas om den är intill den tomma rutan
     }
 
-    // Kontrollerar om spelet är löst
+    // Metod för att kontrollera om spelet är löst i ordning 1 - 15 med en tom sista ruta
     private boolean isSolved() {
-        // Kontrollera om knapparna är i rätt ordning
         for (int i = 0; i < 15; i++) {
             if (!buttons[i].getText().equals(String.valueOf(i + 1))) {
                 return false;
@@ -125,24 +127,25 @@ public class NumberPuzzleGame extends JPanel {
         }
         return buttons[15].getText().isEmpty(); // Sista knappen ska vara tom
     }
-    // Startar timern som räknar upp tiden för varje sekund
+
+    // Metod för att starta timern
     private void startTimer() {
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                elapsedTime += 1000; // Öka den förflutna tiden med 1 sekund
-                int minutes = (elapsedTime / (1000 * 60)) % 60; // Beräkna minuter
-                int seconds = (elapsedTime / 1000) % 60;        // Beräkna sekunder
+                elapsedTime += 1000;
+                int minutes = (elapsedTime / (1000 * 60)) % 60;
+                int seconds = (elapsedTime / 1000) % 60;
 
                 // Formatera tiden till mm:ss
                 String timeFormatted = String.format("%02d:%02d", minutes, seconds);
                 timerLabel.setText("Time: " + timeFormatted); // Uppdatera timerLabel
             }
         });
-        timer.start(); // Starta timern
+        timer.start();
     }
 
-    // Aktiverar "fusk" genom att lösa pusslet för spelaren
+    // Metod för att aktivera "fusk" genom att lösa pusslet för spelaren
     public void cheat() {
         // Återställ knapparna till ett sorterat tillstånd
         for (int i = 0; i < 15; i++) {
@@ -159,8 +162,8 @@ public class NumberPuzzleGame extends JPanel {
                 ,JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, cheat, respons, 0);
     }
 
+    // Startar spelet
     public static void main(String[] args) {
-
         new StartFrame();
     }
 }
