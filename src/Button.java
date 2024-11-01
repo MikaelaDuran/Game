@@ -8,7 +8,7 @@ public class Button extends JButton {
         setBackground(Color.gray);
         setForeground(Color.WHITE);
         setFont(new Font("Comic Sans", Font.BOLD, 24));
-        setFocusable(false); // Inaktivera fokus
-        setFocusPainted(false); //Ta bort fokusindikatorn
+        setFocusable(false);
+        setFocusPainted(false);
     }
 }
