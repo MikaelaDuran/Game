@@ -6,9 +6,9 @@ public class Button extends JButton {
     public Button(String text) {
         super(text);
         setBackground(Color.gray);
-        setForeground(Color.WHITE);
+        setForeground(Color.lightGray);
         setFont(new Font("Comic Sans", Font.BOLD, 24));
-        setFocusable(false);
-        setFocusPainted(false);
+        setFocusable(false); // Inaktivera fokus
+        setFocusPainted(false); //Ta bort fokusindikatorn
     }
 }

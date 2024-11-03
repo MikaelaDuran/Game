@@ -20,7 +20,7 @@ public class StartFrame extends JFrame {
         setFocusable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-        setBackground(Color.lightGray);
+        setBackground(Color.white);
 
         // Etikett och textfält för att mata in spelarens namn
         JLabel label = new JLabel("Enter your name:");
@@ -31,11 +31,11 @@ public class StartFrame extends JFrame {
         playButton.setFocusable(false);
         playButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
         playButton.setBackground(Color.lightGray);
-        playButton.setForeground(Color.white);
+        playButton.setForeground(Color.darkGray);
 
         // Konfigurering av etiketten
         label.setFont(new Font("Comic Sans", Font.BOLD, 15));
-        label.setForeground(Color.black);
+        label.setForeground(Color.darkGray);
         label.setBackground(Color.lightGray);
 
         // ActionListener för play-knappen som startar spelet när knappen klickas
