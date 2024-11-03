@@ -69,7 +69,6 @@ public class GameFrame extends JFrame {
         topPanel.add(moveCountLabel);
         topPanel.add(timerLabel);
         add(topPanel, BorderLayout.NORTH);
-
         setVisible(true);
     }
 
