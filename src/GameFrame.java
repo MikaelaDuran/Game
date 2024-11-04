@@ -78,6 +78,6 @@ public class GameFrame extends JFrame {
         button.setFocusPainted(false);
         button.setFont(new Font("Comic Sans", Font.BOLD, 12));
         button.setBackground(Color.lightGray);
-        button.setForeground(Color.white);
+        button.setForeground(Color.darkGray);
     }
 }
